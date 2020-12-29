@@ -14,4 +14,4 @@ VERSION = "0.1"
 
 # design / interface
 
-UI_MAIN_WINDOW = os.path.join(DESIGN_DIR, 'design.ui')
+UI_MAIN_WINDOW = os.path.join(DESIGN_DIR, 'reminder.ui')
