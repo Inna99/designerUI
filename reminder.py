@@ -38,6 +38,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             self.textBrowser.setText(self.user_input)
 
+    def deleteReminder(self):
+        self.user_input = '\n'.join(self.user_input.strip().split()[:-1]) + '\n'
+        self.addReminder()
+
     def closeEvent(self, event):
         with open('reminder.txt', 'w') as file:
             file.write(self.user_input)

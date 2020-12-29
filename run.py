@@ -2,7 +2,7 @@ def initate_application() -> None:
     """Application entry point."""
     import sys
     from PyQt5 import QtWidgets
-    from app import MainWindow
+    from reminder import MainWindow
     from utils.win import set_current_process_explicit_attributes
 
     app = QtWidgets.QApplication(sys.argv)
