@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, uic
 
-from PyQt5.QtWidgets import QLabel, QWidget
+from PyQt5.QtWidgets import QLabel, QWidget, QMessageBox
 
 from config import UI_MAIN_WINDOW, DESIGN_DIR
 
@@ -42,6 +42,29 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.user_input = '\n'.join(self.user_input.strip().split()[:-1]) + '\n'
         self.addReminder()
 
+    def initMsgBox(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        # msg.setIconPixmap(pixmap)  # Своя картинка
+
+        msg.setWindowTitle("Информация")
+        msg.setText("сохранить изменения?")
+        #msg.setInformativeText("сохранить изменения?")
+        #msg.setDetailedText("DetailedText")
+
+        okButton = msg.addButton('Да', QMessageBox.AcceptRole)
+        msg.addButton('Нет', QMessageBox.RejectRole)
+
+        msg.exec()
+        if msg.clickedButton() == okButton:
+            return True
+        else:
+            return False
+        #self.show()
+
+
     def closeEvent(self, event):
-        with open('reminder.txt', 'w') as file:
-            file.write(self.user_input)
+        okButton = self.initMsgBox()
+        if okButton:
+            with open('reminder.txt', 'w') as file:
+                file.write(self.user_input)
